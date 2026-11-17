@@ -12,12 +12,12 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: 设置Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
       
       - name: 缓存Python依赖
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
@@ -44,7 +44,7 @@ jobs:
       
       - name: 执行签到脚本
        # 开启debug查看完整过程
-        run: DEBUG=true HEADLESS=false python rainyun.py python rainyun.py
+        run: python rainyun.py
         env:
           # 请在GitHub仓库的Settings > Secrets and variables > Actions中设置这些密钥
           RAINYUN_USER: ${{ secrets.RAINYUN_USER }}
